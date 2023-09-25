@@ -34,6 +34,7 @@ public class GestionMateriasView extends javax.swing.JInternalFrame {
         jButtonEliminar = new javax.swing.JButton();
         jButtonGuardar = new javax.swing.JButton();
         jButtonSalir = new javax.swing.JButton();
+        jButtonLimpiar = new javax.swing.JButton();
 
         jLabel6.setText("jLabel6");
 
@@ -100,6 +101,15 @@ public class GestionMateriasView extends javax.swing.JInternalFrame {
             }
         });
 
+        jButtonLimpiar.setBackground(new java.awt.Color(204, 204, 255));
+        jButtonLimpiar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButtonLimpiar.setText("Limpiar");
+        jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLimpiarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,7 +130,9 @@ public class GestionMateriasView extends javax.swing.JInternalFrame {
                             .addComponent(jTextFieldaño, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jRadioButtonEstado))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonBuscar))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonBuscar, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButtonLimpiar, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonNuevo)
                         .addGap(37, 37, 37)
@@ -150,11 +162,12 @@ public class GestionMateriasView extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2)
                             .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonBuscar))
-                        .addGap(33, 33, 33)
+                        .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(39, 39, 39)
+                            .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonLimpiar))
+                        .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(jTextFieldaño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -319,14 +332,19 @@ jButtonEliminar.setEnabled(true);
             mataData.ModificarMateria(mat);
             limpiar();
 
-
+        }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
-    }
+
+    private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
+       limpiar();
+    }//GEN-LAST:event_jButtonLimpiarActionPerformed
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonGuardar;
+    private javax.swing.JButton jButtonLimpiar;
     private javax.swing.JButton jButtonNuevo;
     private javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabel1;
