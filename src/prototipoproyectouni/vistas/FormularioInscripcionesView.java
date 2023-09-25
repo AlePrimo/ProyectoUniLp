@@ -209,8 +209,8 @@ jButtonAnular.setEnabled(true);
         jRadioButtonMateriasInscriptas.setSelected(false);
 
         cargarTabla();
-jButtonInscribir.setEnabled(true);
-jButtonAnular.setEnabled(false);
+        jButtonInscribir.setEnabled(true);
+        jButtonAnular.setEnabled(false);
 
     }//GEN-LAST:event_jRadioButtonMateriasNOinscriptasActionPerformed
 
@@ -221,25 +221,14 @@ jButtonAnular.setEnabled(false);
     }//GEN-LAST:event_jComboBoxAlumnoActionPerformed
 
     private void jButtonInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInscribirActionPerformed
-//       alu=(Alumno)jComboBoxAlumno.getSelectedItem();
-//      
-//         int idmat = (int) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
-//          mat=mataData.buscarMateria(idmat);
-//         Inscripcion insc=new Inscripcion(alu, mat,0);
-//        
-//       ini.guardarInscripcion(insc);
+
         materiasSeleccionadas(true);
        
        
     }//GEN-LAST:event_jButtonInscribirActionPerformed
 
     private void jButtonAnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnularActionPerformed
-//       alu=(Alumno)jComboBoxAlumno.getSelectedItem();
-//      
-//         int idmat = (int) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
-//          mat=mataData.buscarMateria(idmat);
-//    
-//      ini.borrarInscripcionAlumno(alu.getIdAlumno(),mat.getIdMateria());
+
 
   materiasSeleccionadas(false);
 
