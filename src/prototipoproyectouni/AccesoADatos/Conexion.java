@@ -1,6 +1,7 @@
 
 package prototipoproyectouni.AccesoADatos;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -10,10 +11,10 @@ import javax.swing.JOptionPane;
 
 public class Conexion {
     
-    private  static final String URL="jdbc:mariadb://localhost/";
+    private  static final String URL="jdbc:mysql://localhost:3306/";
     private static final String DB="sistemaulp";
-    private static final String USUARIO="root";
-    private static final String PASSWORD="";
+    private static final String USUARIO="ulp";
+    private static final String PASSWORD="sistemaulp";
     
     private static Connection connection;
 
@@ -25,17 +26,13 @@ public class Conexion {
     if (connection==null){
     
         try {
-            Class.forName("org.mariadb.jdbc.Driver");
+//            Class.forName("org.mariadb.jdbc.Driver");
               connection=DriverManager.getConnection(URL+DB+ "?useLegacyDateTimeCode=false&server&TimeZone=UTC"+"&user="+USUARIO+"&password="+PASSWORD);
                     
-                    } catch (ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(null,"Error al cargar los drivers "+ex.getMessage() );
+//            JOptionPane.showMessageDialog(null,"Error al cargar los drivers "+ex.getMessage() );
         } catch (SQLException ex) {
            JOptionPane.showMessageDialog(null,"Error al conectarse a base de datos "+ex.getMessage() );
         } 
-    if(connection!=null){
-    //JOptionPane.showMessageDialog(null,"Conexion exitosa" );
-    }
     
     }
     return connection;

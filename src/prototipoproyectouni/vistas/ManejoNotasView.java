@@ -1,4 +1,3 @@
-
 package prototipoproyectouni.vistas;
 
 import java.util.ArrayList;
@@ -6,12 +5,13 @@ import java.util.Iterator;
 
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import prototipoproyectouni.AccesoADatos.AlumnoData;
 import prototipoproyectouni.AccesoADatos.InscripcionData;
 import prototipoproyectouni.Entidades.Alumno;
 import prototipoproyectouni.Entidades.Inscripcion;
-
 
 public class ManejoNotasView extends javax.swing.JInternalFrame {
 
@@ -27,13 +27,14 @@ public class ManejoNotasView extends javax.swing.JInternalFrame {
 
     public ManejoNotasView() {
         initComponents();
-          setLocation(100, 0);
+        setLocation(100, 0);
         cargarCombo();
         armarCabecera();
         cargarTabla();
+        jButtonGuardar.setEnabled(false);
+        estadoBotonGuardar();
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -146,7 +147,7 @@ public class ManejoNotasView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
     private void jComboBoxAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAlumnosActionPerformed
-       
+
         Alumno alumnoSeleccionado = (Alumno) jComboBoxAlumnos.getSelectedItem();
         InscripcionData ini = new InscripcionData();
         mates = (ArrayList) ini.obtenerInscripcionesporAlumno(alumnoSeleccionado.getIdAlumno());
@@ -161,7 +162,7 @@ public class ManejoNotasView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jComboBoxAlumnosActionPerformed
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-       String nota;
+        String nota;
         int idmat = 0;
         double nota1 = 0;
 
@@ -170,24 +171,45 @@ public class ManejoNotasView extends javax.swing.JInternalFrame {
         for (int f = 0; f < jTablemateria.getRowCount(); f++) {
             idmat = (int) jTablemateria.getValueAt(f, 0);
             nota = "" + jTablemateria.getValueAt(f, 2);
-            try {
-                nota1 = Double.parseDouble(nota);
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Ingre una nota valida (0-10)");
-            }
-            
-            if (!(nota1 >= 0 && nota1 <= 10)) {
-                JOptionPane.showMessageDialog(null, "Ingrese una nota válida (0-10)\nEn Materia: " + jTablemateria.getValueAt(f, 1));
-            } else {
+            nota1 = Double.parseDouble(nota);
+            if (nota1 >= 0 && nota1 <= 10) {
                 if (inn.actualizarNota(idalu, idmat, nota1)) {
                     JOptionPane.showMessageDialog(null, "Carga de Materia Exitosa\nEn Materia: " + jTablemateria.getValueAt(f, 1));
                 }
             }
         }
         cargarTabla();
-
+        jButtonGuardar.setEnabled(false);
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
+    private void estadoBotonGuardar() {
+        modelo.addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent tme) {
+                System.out.println(tme.getType());
+                if (tme.getType() == TableModelEvent.UPDATE) {
+                    int fila = tme.getFirstRow();
+                    int columna = tme.getColumn();
+                    String sValor = "" + jTablemateria.getValueAt(fila, columna);
+                    try {
+                        double nota = Double.parseDouble(sValor);
+                        if (!(nota >= 0 && nota <= 10)) {
+                            JOptionPane.showMessageDialog(null, "QQQQQIngrese una nota válida (0-10)\nEn Materia: " + jTablemateria.getValueAt(fila, columna));
+                            jButtonGuardar.setEnabled(false);
+                        } else {
+                            jButtonGuardar.setEnabled(true);
+                            JOptionPane.showMessageDialog(null, "valor de Materia : " + jTablemateria.getValueAt(fila, columna) + "\nNO OLVIDE GUARDAR LAS MODIFICACIONES");
+                        }
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(null, "QQQQQQIngrese una nota válida (0-10)\nEn Materia: " + jTablemateria.getValueAt(fila, columna));
+                        jButtonGuardar.setEnabled(false);
+                        return;
+                    }
+                }
+            }
+        });
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonGuardar;
@@ -221,9 +243,8 @@ public class ManejoNotasView extends javax.swing.JInternalFrame {
         jTablemateria.setModel(modelo);
     }
 
-    
-    public void cargarTabla(){
-     Alumno alumnoSeleccionado = (Alumno) jComboBoxAlumnos.getSelectedItem();
+    public void cargarTabla() {
+        Alumno alumnoSeleccionado = (Alumno) jComboBoxAlumnos.getSelectedItem();
         InscripcionData ini = new InscripcionData();
         mates = (ArrayList) ini.obtenerInscripcionesporAlumno(alumnoSeleccionado.getIdAlumno());
         modelo.setRowCount(0);
@@ -232,9 +253,7 @@ public class ManejoNotasView extends javax.swing.JInternalFrame {
             modelo.addRow(new Object[]{next.getMateria().getIdMateria(), next.getMateria().getNombre(), next.getNota()});
 
         }
-    
-    
+
     }
-    
-    
+
 }

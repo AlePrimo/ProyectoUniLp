@@ -17,12 +17,12 @@ public class PrototipoProyectoUni {
 //        Alumno pepe = new Alumno(4, 5555, "Perez", "Juan carlos", LocalDate.of(1980, Month.MARCH, 12), true);
 //        Alumno jose = new Alumno(6666, "Perez", "Jose", LocalDate.of(1985, 5, 22), true);
 //        Alumno car = new Alumno(7777, "Sanchez", "Carlos", LocalDate.of(1993, 5, 22), true);
-////        Alumno tot = new Alumno(888, "Salvador", "Rodrigo", LocalDate.of(1978, 5, 24), true);
+////        Alumno toti = new Alumno(888, "Salvador", "Rodrigo", LocalDate.of(1978, 5, 24), true);
      // AlumnoData alu = new AlumnoData();
 ////Alumno ccc=alu.buscarAlumno(5);
 ////Alumno coc=alu.buscarAlumno(4);
 //Alumno antesPerez=new Alumno(7,23458795,"Velasquez","raul",LocalDate.of(1956, 4, 2), true);
-//        //alu.guardarAlumno(tot);
+//        //alu.guardarAlumno(toti);
 //        //alu.guardarAlumno(car);
 //        //alu.guardarAlumno(jose);
 //        //alu.guardarAlumno(pepe);

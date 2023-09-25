@@ -4,11 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
-import org.mariadb.jdbc.Statement;
+//import org.mariadb.jdbc.Statement;
 import prototipoproyectouni.Entidades.Alumno;
 import prototipoproyectouni.Entidades.Inscripcion;
 import prototipoproyectouni.Entidades.Materia;
@@ -219,18 +220,13 @@ public class InscripcionData {
             ps.setInt(2, idAlumno);
             ps.setInt(3, idMateria);
             int res = ps.executeUpdate();
-            if (res == 1) {
-                //JOptionPane.showMessageDialog(null, "Actualizacion exitosa");
-                return true;
-            }else{
-            return false;
-            }
+            if (res == 1) return true;
+            else return false;
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al conectarse a la tabla Inscripciones");
             return false;
         }
-
     }
 
 
