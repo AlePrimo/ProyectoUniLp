@@ -200,8 +200,8 @@ public class FormularioInscripcionesView extends javax.swing.JInternalFrame {
         jRadioButtonMateriasNOinscriptas.setSelected(false);
 
         cargarTabla();
-jButtonInscribir.setEnabled(false);
-jButtonAnular.setEnabled(true);
+        jButtonInscribir.setEnabled(false);
+        jButtonAnular.setEnabled(true);
 
     }//GEN-LAST:event_jRadioButtonMateriasInscriptasActionPerformed
 

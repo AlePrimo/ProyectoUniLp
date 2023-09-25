@@ -211,7 +211,7 @@ public class InscripcionData {
     }
 
 
-    public void actualizarNota(int idAlumno, int idMateria, double nota) {
+    public boolean actualizarNota(int idAlumno, int idMateria, double nota) {
         String sql = "UPDATE inscripcion SET nota=? WHERE idAlumno=? And idMateria=?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -220,11 +220,15 @@ public class InscripcionData {
             ps.setInt(3, idMateria);
             int res = ps.executeUpdate();
             if (res == 1) {
-                JOptionPane.showMessageDialog(null, "Actualizacion exitosa");
+                //JOptionPane.showMessageDialog(null, "Actualizacion exitosa");
+                return true;
+            }else{
+            return false;
             }
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al conectarse a la tabla Inscripciones");
+            return false;
         }
 
     }

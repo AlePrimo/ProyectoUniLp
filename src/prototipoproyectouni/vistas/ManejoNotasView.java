@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import prototipoproyectouni.AccesoADatos.AlumnoData;
 import prototipoproyectouni.AccesoADatos.InscripcionData;
@@ -160,23 +161,30 @@ public class ManejoNotasView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jComboBoxAlumnosActionPerformed
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-        String nota;
+       String nota;
         int idmat = 0;
         double nota1 = 0;
 
-        Alumno uno =(Alumno)jComboBoxAlumnos.getSelectedItem();
-        int idalu= uno.getIdAlumno();
+        Alumno uno = (Alumno) jComboBoxAlumnos.getSelectedItem();
+        int idalu = uno.getIdAlumno();
         for (int f = 0; f < jTablemateria.getRowCount(); f++) {
-            
             idmat = (int) jTablemateria.getValueAt(f, 0);
             nota = "" + jTablemateria.getValueAt(f, 2);
-
-            nota1 = Double.parseDouble(nota);
-
-            inn.actualizarNota(idalu, idmat, nota1);
-
+            try {
+                nota1 = Double.parseDouble(nota);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Ingre una nota valida (0-10)");
+            }
+            
+            if (!(nota1 >= 0 && nota1 <= 10)) {
+                JOptionPane.showMessageDialog(null, "Ingrese una nota válida (0-10)\nEn Materia: " + jTablemateria.getValueAt(f, 1));
+            } else {
+                if (inn.actualizarNota(idalu, idmat, nota1)) {
+                    JOptionPane.showMessageDialog(null, "Carga de Materia Exitosa\nEn Materia: " + jTablemateria.getValueAt(f, 1));
+                }
+            }
         }
-
+        cargarTabla();
 
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
