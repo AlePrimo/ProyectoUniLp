@@ -186,7 +186,7 @@ public class ManejoNotasView extends javax.swing.JInternalFrame {
         modelo.addTableModelListener(new TableModelListener() {
             @Override
             public void tableChanged(TableModelEvent tme) {
-                System.out.println(tme.getType());
+              
                 if (tme.getType() == TableModelEvent.UPDATE) {
                     int fila = tme.getFirstRow();
                     int columna = tme.getColumn();
@@ -194,14 +194,14 @@ public class ManejoNotasView extends javax.swing.JInternalFrame {
                     try {
                         double nota = Double.parseDouble(sValor);
                         if (!(nota >= 0 && nota <= 10)) {
-                            JOptionPane.showMessageDialog(null, "QQQQQIngrese una nota válida (0-10)\nEn Materia: " + jTablemateria.getValueAt(fila, columna));
+                            JOptionPane.showMessageDialog(null, "Ingrese una nota válida (0-10)\nEn Materia: " + jTablemateria.getValueAt(fila, 1));
                             jButtonGuardar.setEnabled(false);
                         } else {
                             jButtonGuardar.setEnabled(true);
-                            JOptionPane.showMessageDialog(null, "valor de Materia : " + jTablemateria.getValueAt(fila, columna) + "\nNO OLVIDE GUARDAR LAS MODIFICACIONES");
+                            JOptionPane.showMessageDialog(null, "Nuevo valor de la Materia"+ jTablemateria.getValueAt(fila, 1)+": " + jTablemateria.getValueAt(fila, columna) + "\n Presione el boton 'Guardar' para cambiar la nota");
                         }
                     } catch (NumberFormatException e) {
-                        JOptionPane.showMessageDialog(null, "QQQQQQIngrese una nota válida (0-10)\nEn Materia: " + jTablemateria.getValueAt(fila, columna));
+                        JOptionPane.showMessageDialog(null,"Ingrese una nota válida (0-10)\nEn Materia: " + jTablemateria.getValueAt(fila,1));
                         jButtonGuardar.setEnabled(false);
                         return;
                     }
